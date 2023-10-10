@@ -1,2 +1,2 @@
 # Information-Visualisation
-Visualization of Data 
+The discipline of converting data and information into visual formats, such as maps, graphs, and charts, to facilitate comprehension, exploration, and decision-making is known as information visualisation, or InfoVis. It takes advantage of how rapidly patterns, trends, and anomalies may be identified by the human visual system, making complex data easier to access and understand.
