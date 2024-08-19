@@ -1,0 +1,133 @@
+Design Summary:
+ The goal is to create a tool that specifically looks at transportation options in the City of Melbourne in
+ relation to major events, with information on tram stop, train station and on and off-street parking locations, in
+ addition to road closures. The tool is a tableau story with R shiny visualisations with a target audience of local
+ residents who often commute to the CBD, as well as residents of the CBD- in particular those who may be new to
+ the area and are still familiarising themselves with the various transport systems in operation.
+ The Tableau story is accessible via kiosks which will be placed in high foot-traffic areas around Melbourne CBD,
+ such as Bourke Street Mall and Melbourne Central.
+ There are many interesting events happening in Melbourne every month as seen on the the City of Melbourne
+ events website, “What’s On Melbourne”. However, not everyone will want to attend all the different events, so
+ there are toggles to assist users in filtering the types of events they wish to attend.
+
+Interface Overview:
+ The interface is shown as a story, which guides users through the events happening in Melbourne. The Tableau
+ story consists of six different pages: Home, What’s on Melbourne, Explore Events in Melbourne CBD, Event Details,
+ How Convenient to Access that Event?, and How’s Melbourne Transportation? The story guides users through all
+ events available in Melbourne CBD, allows them to explore each event on a map, view event details for additional
+ information, and assess the closest transportation options and potential inconveniences in the area. Each page
+ will be explained separately below.
+ 1. Home
+ This page is the welcome page which includes the objective of this interface along with an
+ acknowledgement message.
+ 2. What’s on Melbourne
+ The next page is to give users an overview of the events in Melbourne. By exploring this page, the user
+ should get some idea about what kind of events are in Melbourne and continue exploring in the next page.
+ Moreover, the most exciting feature on this page is random events, which users can use in order to explore
+ more on those events in the next part. This is a good starting point, if the user doesn’t have any idea about
+ where to go.
+ 3. Explore events in Melbourne CBD
+ This page assists users in determining the type of events they want to attend. Events encompass a variety
+ of types, and some events are free while others require payment. Users can select the filter on this page,
+ and the mapalong with table contents will change. Users can click on the map as well to view some basic
+ information about that event. Furthermore, users can measure the distance between events using the
+ built-in map tools, enabling them to decide if they want to attend multiple events and assess the distance
+ between them. Lastly, if a user wants to reset all filters, they can click the Reset Filters button to reset all
+ filters in that page including R visualisation.
+ 4. Event Details
+ On this page, users can delve into the details of each event. To do so, users should begin by selecting a
+ filter from the left sidebar to display the specific event details on the page. The map below provides the
+ exact location of the selected event. Additionally, there are three transportation layers available: Train, Car
+ Park, and Tram, which users can toggle on and off according to their preferences. This feature allows
+ users to get a rough idea of the available transportation options around the events.
+ Moreover, users can select particular transportation markers to draw a line between events and
+ transportation, which users can also measure using in-build measurements. Lastly, if the user wants to
+ reset markers and lines on the map, the user can select the reset button to clear all of that.
+ 5. HowConvenient to Access that Event?
+ This page focuses on the availability of transportation and potential inconveniences in the event area. The
+ functionality is akin to the previous page, where users must first select a specific event to display it on the
+ map. Several layers are available, including Train, Car Park, Tram, and City Work, which function similarly
+ to the previous page. Furthermore, users can click on the map to reveal a 500-metre radius circle around
+ the events. This allows users to assess the proximity of transportation options and potential
+ inconveniences in the vicinity, with the value box displayed at the bottom.
+ 6. How’s Melbourne Transportation?
+ This page provides information about transportation analysis, and it isn't directly related to events.
+ Instead, it offers insights into the state of transportation in Melbourne CBD, fulfilling a responsibility of
+ local governments to depict the city's conditions for their citizens. Users can interact with each section
+ where the graph will change according to selection.
+
+Special Features:
+ 1. Leaflet Map Layer: Having different layers of transportation and potential inconveniences are a nice touch
+ to the map. It is both easy to use and powerful as it helps control the density of the map.
+ 2. Counting Data Point within Circle: The team thought that counting the transportation markers nearby
+ would be nice information to present to the user; however, the dataset retrieved doesn’t have correlation or
+ connections. We use the sf library in R to achieve this feature. We turn dataframe objects to sf objects,
+ and use the st_within function to count the number of markers within 500 metre circle radius- or about 5
+ minutes walk.
+ 3. Logical Story Line: The story we presented through Tableau Story is logical, and engages the user to
+ explore more as the user goes on. It also accommodates different levels of users as well.
+ a. Uncertain User: This type of user has no idea where to go, and happens to be by a kiosk.
+ b. Certain User: This type of user has a certain place to go, and wants to explore the accommodation
+ around the events.
+ c. Typical User: Even if the user isn't particularly interested in events, they can still visit the last page
+ to assess the transportation situation in Melbourne CBD. Portraying the city's conditions is a
+ crucial responsibility of local governments toward their citizens.
+ 4. Actions on Dashboard: There are many selective actions in the dashboard; for example, clicking this text
+ will filter only for 1 element, while the rest remain the same. This helps users to focus on 1 important
+ element rather than seeing all the changes at the same time, which could be overwhelming.
+ 5. Using Dashboard Elements without RDashboard: Elements in R dashboard usually come with header and
+ section, but using bslib library allows us to use it directly on the R shiny. It also improves the padding and
+ font on the overall visualisation.
+ 6. Random Events: This section in the second tab allows users to randomly select the event to explore which
+ is inspired from this tutorial. It uses HighCharter library, HTML, CSS, and javascript to make it work. Some
+ additional customizations are added to make it the same style as the interface.
+
+  Design Decision:
+ 1. Tableau with R Shiny Visualisation: We chose to use Tableau in combination with R Shiny visualisation
+ because Tableau provides visually appealing and easily customizable elements, while R Shiny offers
+ advanced elements like maps that can be customised in various ways.
+ 2. Colour: The colour and design are based on the City of Melbourne website, which would give a genuine
+ connection to the organisation. Furthermore, the black background enhances the visualisations, making
+ them visually striking and attention-grabbing in design. The colour of the tram and train data points was
+ based on the logos of Yarra Trams and Metro Trains (green and blue respectively) to maintain familiarity.
+ 3. Map: Map is the main element of the tableau story because the aim of this interface is to help people get
+ around the city on different events, and the best way to portray that method is by using map.
+ 4. Big Button: Considering the interface is designed for kiosk display, the button should not only be easily
+ clickable but also easy to locate.
+ 
+Summary:
+ Interesting Pattern/ Information
+ 1. Train
+ By using R mapvisualisation, tableau map, and heat map, we can explore the information about trains.
+     -The train transportation is not packed within the city compared to tram.
+     -Train is not a good way to travel around the city due to its small amount
+     -Surprisingly, most of the train stations don't have lifts, and not many trains are in loop.
+     -Most commontrains are not in loop and don’t have lift.
+ 2. Tram
+ By using R map visualisation, and the measure tools along with the value box. These are the information
+ gathered from such tools.--
+     -The tram transportation is packed within the city
+     -Tram is a good way to travel around the city due to its large amount
+     -Most of the time, tram is close to each events in Melbourne CBD
+ 3. CarPark
+ By using R mapvisualisation, pie chart, and heatmap, we can explore the information about car parks.
+ The city has a lot of parking places and spaces. Almost every main street has car parks.
+     -Car is a good way to travel around the city due to its large amount
+     -Most of the car park is commercial, where Melbourne CBD has the most of it.
+     -Parkville only has commercial car park, but North Melbourne only has residential car park. The rest are mixed.
+ 4. City Work
+ By using R map visualisation, and the measure tools with the value box. There is the information observed
+ from the visualisation.
+     -The city has a lot of city work, mostly dense in the Melbourne CBD
+     -Most of them are categorised as structures projects, indicating that Melbourne CBD is actively working to enhance the city.
+     -The other city projects include traffic management and reserved parking, both of which are alsodense in Melbourne CBD. These indicate that the city is       bustling with activity and development.
+     -Many events are centred around ongoing city projects; hence, it's advisable to be cautious when
+      attending events in such areas.
+ 5.Events
+ By using R map visualisation, the measure tools, and layer. These are the information gathered from using
+ such tools.
+     -Surprisingly, there are many free events despite the rising cost of living in Melbourne CBD, so people can still enjoy themselves without paying money
+     -On the other hand, if a user chooses to attend priced events, they should be prepared for higher costs, with some reaching a maximum of $399.
+     -Events are situated around the city
+
+
